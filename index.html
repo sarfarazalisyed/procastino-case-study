@@ -595,11 +595,13 @@ dialog.lb::backdrop{background:rgba(5,6,9,.9)}
   .bar .now{display:none}
   .bar-in{justify-content:space-between}
 }
-/* header bar removed; Back button kept */
-.bar{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none}
-.bar .progress{display:none}
-.bar .back{pointer-events:auto;background:var(--bar-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.bar .back:hover,.bar .back:focus-visible{background:var(--bar-fg)}
+/* Framer embed fix: keep the Back button inside the embedded page's layout,
+   instead of fixing it to the iframe viewport where it can overlap Framer's own header. */
+.bar{position:absolute!important;top:12px!important;left:0!important;right:auto!important;width:auto!important;z-index:9999!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;pointer-events:none}
+.bar-in{height:auto!important;min-height:0!important;justify-content:flex-start!important;padding-top:0!important;padding-bottom:0!important}
+.bar .progress{display:none!important}
+.bar .back{position:relative!important;top:auto!important;left:auto!important;z-index:10000!important;pointer-events:auto!important;display:inline-flex!important;align-items:center!important;background:rgba(253,231,190,.96)!important;color:#5E1519!important;border:1.5px solid #5E1519!important;box-shadow:0 2px 8px rgba(62,13,16,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.bar .back:hover,.bar .back:focus-visible{background:#5E1519!important;color:#FDEBD0!important}
 </style>
 
 <header class="bar" id="bar">
